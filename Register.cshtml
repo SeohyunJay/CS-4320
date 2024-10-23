@@ -1,0 +1,59 @@
+﻿@*@model iCAREAPPTest.Models.iCAREUser
+
+    @{
+        ViewBag.Title = "Register";
+    }
+
+    <h2>Register</h2>
+    <form action="/UserAuthentication/Register" method="post">
+        <div>
+            <label>Username:</label>
+            <input type="text" name="name" required />
+        </div>
+        <div>
+            <label>Password:</label>
+            <input type="password" name="password" required />
+        </div>
+        <div>
+            <label>Role:</label>
+            <select name="selectedRole">
+                @foreach (var role in ViewBag.Roles as IEnumerable<iCAREAPPTest.Models.UserRole>)
+                {
+                    <option value="@role.roleName">@role.roleName</option>
+                }
+            </select>
+        </div>
+        <div>
+            <button type="submit">Register</button>
+        </div>
+    </form>*@
+
+@model iCAREAPPTest.Models.iCAREUser
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Register</h2>
+<form asp-action="Register" method="post">
+    <div>
+        <label>Username:</label>
+        <input type="text" asp-for="name" required />
+    </div>
+    <div>
+        <label>Password:</label>
+        <input type="password" asp-for="password" required />
+    </div>
+    <div>
+        <label>Role:</label>
+        <select asp-for="selectedRole" required>
+            @foreach (var role in ViewBag.Roles as IEnumerable<iCAREAPPTest.Models.UserRole>)
+            {
+                <option value="@role.roleName">@role.roleName</option>
+            }
+        </select>
+    </div>
+    <div>
+        <button type="submit">Register</button>
+    </div>
+</form>
