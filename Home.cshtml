@@ -1,0 +1,20 @@
+@{
+    ViewBag.Title = "Home";
+}
+
+<h2>Welcome to iCARE</h2>
+
+<div>
+    <button onclick="window.location.href='/iCAREBoard'">Display iCARE Board</button>
+</div>
+<div>
+    <button onclick="window.location.href='/Palette'">Display Palette</button>
+</div>
+<div>
+    <button onclick="window.location.href='/ManagePatient'">Manage Patient</button>
+</div>
+<div>
+    <form action="/UserAuthentication/Logout" method="post" style="display: inline;">
+        <button type="submit">Logout</button>
+    </form>
+</div>
