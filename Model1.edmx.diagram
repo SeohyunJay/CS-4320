@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d84a05f771b6431daeace65870342b20" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="iCAREDBWebTestModel.DocumentMetadata" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="iCAREDBWebTestModel.DrugManagementSystem" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="iCAREDBWebTestModel.DrugsDictionary" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="iCAREDBWebTestModel.GeoCodes" Width="1.5" PointX="1.5" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="iCAREDBWebTestModel.iCAREAdmin" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="iCAREDBWebTestModel.iCAREUser" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="iCAREDBWebTestModel.iCAREWorker" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="iCAREDBWebTestModel.ModificationHistory" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="iCAREDBWebTestModel.PatientRecord" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="iCAREDBWebTestModel.TreatmentRecord" Width="1.5" PointX="5.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="iCAREDBWebTestModel.UserPassword" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="iCAREDBWebTestModel.UserRole" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="iCAREDBWebTestModel.FK__DocumentM__creat__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="iCAREDBWebTestModel.FK__DocumentM__modif__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="iCAREDBWebTestModel.FK__DocumentM__patie__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="iCAREDBWebTestModel.FK__Modificat__docID__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="iCAREDBWebTestModel.FK__PatientRe__geoID__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="iCAREDBWebTestModel.FK__iCAREAdmi__admin__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="iCAREDBWebTestModel.FK__iCAREWork__worke__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="iCAREDBWebTestModel.FK__UserPassword__ID__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="iCAREDBWebTestModel.FK__Treatment__worke__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="iCAREDBWebTestModel.FK__Treatment__patie__48CFD27E" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

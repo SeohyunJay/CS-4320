@@ -1,0 +1,61 @@
+﻿@model iCAREWebExperiment.Models.PatientRecord
+
+<h2>Add New Patient</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.name)
+        @Html.TextBoxFor(model => model.name, new { @class = "form-control", placeholder = "Enter patient name" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.address)
+        @Html.TextBoxFor(model => model.address, new { @class = "form-control", placeholder = "Enter address" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.dateOfBirth)
+        @Html.TextBoxFor(model => model.dateOfBirth, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.height)
+        @Html.TextBoxFor(model => model.height, new { @class = "form-control", placeholder = "Enter height in cm" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.weight)
+        @Html.TextBoxFor(model => model.weight, new { @class = "form-control", placeholder = "Enter weight in kg" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.bloodGroup)
+        @Html.TextBoxFor(model => model.bloodGroup, new { @class = "form-control", placeholder = "Enter blood group" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.bedID)
+        @Html.TextBoxFor(model => model.bedID, new { @class = "form-control", placeholder = "Enter bed ID" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.treatmentArea)
+        @Html.TextBoxFor(model => model.treatmentArea, new { @class = "form-control", placeholder = "Enter treatment area" })
+    </div>
+
+    <div class="form-group">
+        <label for="geoID">GeoCode:</label>
+        <select class="form-control" id="geoID" name="geoID">
+            <option value="">Select GeoCode</option>
+            @foreach (var geo in ViewBag.GeoCodes as SelectList)
+            {
+                <option value="@geo.Value">@geo.Text</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Patient</button>
+}

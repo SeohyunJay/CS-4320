@@ -1,0 +1,41 @@
+﻿@model IEnumerable<iCAREWebExperiment.Models.PatientRecord>
+
+<h2>My Board</h2>
+
+<p>Welcome, @ViewBag.RoleName!</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Date of Birth</th>
+            <th>Height</th>
+            <th>Weight</th>
+            <th>Blood Group</th>
+            <th>Bed ID</th>
+            <th>Treatment Area</th>
+            <th>Number of Nurses</th>
+            <th>Has Doctor</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var patient in Model)
+        {
+            <tr>
+                <td>@patient.patientID</td>
+                <td>@patient.name</td>
+                <td>@patient.address</td>
+                <td>@patient.dateOfBirth.ToShortDateString()</td>
+                <td>@patient.height</td>
+                <td>@patient.weight</td>
+                <td>@patient.bloodGroup</td>
+                <td>@patient.bedID</td>
+                <td>@patient.treatmentArea</td>
+                <td>@patient.numOfNurses</td>
+                <td>@(patient.hasDoctor ? "Yes" : "No")</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<iCAREWebExperiment.Models.UserWithRoleViewModel>
+
+<h2>Manage Users</h2>
+
+<a href="@Url.Action("AddUser", "Admin")" class="btn btn-primary">Add New User</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="5">No users found.</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var user in Model)
+            {
+                <tr>
+                    <td>@(user.userName ?? "N/A")</td>
+                    <td>@(user.name ?? "N/A")</td>
+                    <td>@(user.email ?? "N/A")</td>
+                    <td>@(user.roleName ?? "N/A")</td>
+                    <td>
+                        <a href="@Url.Action("EditUser", "Admin", new { id = user.ID })">Edit</a> |
+                        <form action="@Url.Action("DeleteUser", "Admin", new { id = user.ID })" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-link" style="color: red; text-decoration: underline; padding: 0; border: none; background: none;">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

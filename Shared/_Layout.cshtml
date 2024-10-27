@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - iCARE System</title> <!-- Changed to iCARE System -->
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <div class="container">
+            @Html.ActionLink("iCARE System", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" }) <!-- Changed Application name to iCARE System -->
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <!-- Removed About and Contact links -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - iCARE System</p> <!-- Changed footer text to iCARE System -->
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+@if (Session["LoggedUser"] != null)
+{
+    <form action="@Url.Action("Index", "Logout")" method="post">
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-danger">Logout</button>
+    </form>
+}
+@if (Session["Role"] != null && Session["Role"].ToString() == "Admin")
+{
+    <a href="@Url.Action("Manage", "Admin")" class="btn btn-primary">Manage Users</a>
+}

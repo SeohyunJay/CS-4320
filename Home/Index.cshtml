@@ -1,0 +1,104 @@
+﻿@*@{
+        ViewBag.Title = "Home";
+    }
+
+    <h2>Welcome, @ViewBag.Username!</h2>
+
+    @if (ViewBag.Role != null)
+    {
+        <p>Your role is: <strong>@ViewBag.Role</strong></p>
+
+        if (ViewBag.Role == "Admin")
+        {
+            <p>As an Admin, you can manage users and view reports.</p>
+        }
+        else if (ViewBag.Role == "Doctor")
+        {
+            <p>As a Physician, you can manage patient records.</p>
+        }
+        else if (ViewBag.Role == "Nurse")
+        {
+            <p>As a Nurse, you can manage daily patient tasks.</p>
+        }
+    }
+    else
+    {
+        <p>Your role is not defined. Please contact the administrator.</p>
+    }
+
+    @if (Session["LoggedUser"] != null)
+    {
+        <form action="@Url.Action("Index", "Logout")" method="post">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+    }*@
+
+<!--@{
+    ViewBag.Title = "Home";
+}
+
+<h2>Welcome, @ViewBag.Username!</h2>
+
+@if (ViewBag.RoleID == "2") // Doctor role
+{
+    <p>Your role is: <strong>Doctor</strong></p>
+    <p>As a Doctor, you can perform the following actions:</p>
+    <ul>
+        <li><a href="@Url.Action("ManagePatients", "Doctor")">Manage Patients</a></li>
+        <li><a href="@Url.Action("AssignPatients", "Doctor")">Assign Patients</a></li>
+        <li><a href="@Url.Action("DisplayPalette", "Doctor")">Display Palette</a></li>
+        <li><a href="@Url.Action("MyBoard", "Doctor")">My Board</a></li>
+    </ul>
+}
+else if (ViewBag.RoleID == "3") // Nurse role
+{
+    <p>Your role is: <strong>Nurse</strong></p>
+    <p>As a Nurse, you can perform the following actions:</p>
+    <ul>
+        <li><a href="@Url.Action("ManagePatients", "Nurse")">Manage Patients</a></li>
+        <li><a href="@Url.Action("AssignPatients", "Nurse")">Assign Patients</a></li>
+        <li><a href="@Url.Action("DisplayPalette", "Nurse")">Display Palette</a></li>
+        <li><a href="@Url.Action("MyBoard", "Nurse")">My Board</a></li>
+    </ul>
+}
+else
+{
+    <p>Your role is not defined. Please contact the administrator.</p>
+}-->
+
+
+@{
+    ViewBag.Title = "Home";
+}
+
+<h2>Welcome, @Session["LoggedUser"]!</h2>
+
+@if (ViewBag.RoleID == "1") // Admin
+{
+    <p>Your role: <strong>Admin</strong></p>
+    <p>As an Admin, you can manage users and view reports.</p>
+    <a href="@Url.Action("ManageUsers", "Admin")" class="btn btn-primary">Manage Users</a>
+}
+else if (ViewBag.RoleID == "2") // Doctor
+{
+    <p>Your role: <strong>Doctor</strong></p>
+    <p>As a Doctor, you can manage patient records and assignments.</p>
+    <a href="@Url.Action("ManagePatient", "Patient")" class="btn btn-primary">Manage Patients</a>
+    <a href="@Url.Action("AssignPatient", "Patient")" class="btn btn-primary">Assign Patient</a>
+    <a href="@Url.Action("DisplayPalette", "Patient")" class="btn btn-primary">Display Palette</a>
+    <a href="@Url.Action("MyBoard", "Patient")" class="btn btn-primary">Display MyBoard</a>
+}
+else if (ViewBag.RoleID == "3") // Nurse
+{
+    <p>Your role: <strong>Nurse</strong></p>
+    <p>As a Nurse, you can manage patient tasks and view assigned work.</p>
+    <a href="@Url.Action("ManagePatient", "Patient")" class="btn btn-primary">Manage Patients</a>
+    <a href="@Url.Action("AssignPatient", "Patient")" class="btn btn-primary">Assign Patient</a>
+    <a href="@Url.Action(" DisplayPalette", "Patient" )" class="btn btn-primary">Display Palette</a >
+    <a href = "@Url.Action("MyBoard", "Patient")" class="btn btn-primary">Display MyBoard</a>
+}
+else
+{
+<p>Your role is not defined. Please contact the administrator.</p>
+}

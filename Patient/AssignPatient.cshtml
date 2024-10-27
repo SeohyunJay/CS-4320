@@ -1,0 +1,153 @@
+﻿@*@model IEnumerable<iCAREWebExperiment.Models.PatientRecord>
+
+    @{
+        ViewBag.Title = "Assign Patient";
+    }
+
+    <h2>Assign Patient by Location</h2>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <form asp-action="AssignPatient" method="get">
+        <div class="form-group">
+            <label for="geoID">Filter by Location:</label>
+            <select class="form-control" id="geoID" name="selectedGeoID" onchange="this.form.submit()">
+                <option value="">All Locations</option>
+                @foreach (var geo in ViewBag.GeoCodes)
+                {
+                    <option value="@geo.geoID" @(ViewBag.SelectedGeoID == geo.geoID ? "selected" : "")>@geo.description</option>
+                }
+            </select>
+        </div>
+    </form>
+
+    <form asp-action="AssignPatient" method="post">
+        @Html.AntiForgeryToken()
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Patient ID</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Date of Birth</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var patient in Model)
+                {
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="selectedPatients" value="@patient.patientID" />
+                        </td>
+                        <td>@patient.patientID</td>
+                        <td>@patient.name</td>
+                        <td>@patient.address</td>
+                        <td>@patient.dateOfBirth.ToShortDateString()</td>
+                        <td>@patient.geoID</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary">Assign Selected Patients</button>
+    </form>*@
+@*@model IEnumerable<iCAREWebExperiment.Models.PatientRecord>
+
+    <h2>Assign Patients</h2>
+
+    <form method="get" action="@Url.Action("AssignPatient", "Patient")">
+        <div class="form-group">
+            <label for="selectedGeoID">Filter by Geolocation:</label>
+            <select name="selectedGeoID" class="form-control" id="selectedGeoID">
+                <option value="">-- Select Location --</option>
+                @foreach (var geo in ViewBag.GeoCodes)
+                {
+                    <option value="@geo.Value" @(ViewBag.SelectedGeoID == geo.Value ? "selected" : "")>@geo.Text</option>
+                }
+            </select>
+            <button type="submit" class="btn btn-primary">
+                Filter
+            </button>
+
+
+            <form method="post" action="@Url.Action("AssignPatient", "Patient")">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Select</th>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Geolocation</th>
+                            <th>Number of Nurses</th>
+                            <th>Doctor Assigned</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var patient in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="selectedPatients" value="@patient.patientID" />
+                                </td>
+                                <td>@patient.patientID</td>
+                                <td>@patient.name</td>
+                                <td>@patient.address</td>
+                                <td>@patient.geoID</td>
+                                <td>@patient.numOfNurses</td>
+                                <td>@(patient.hasDoctor ? "Yes" : "No")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <button type="submit" class="btn btn-primary">Assign Selected Patients</button>
+            </form>*@
+
+@model IEnumerable<iCAREWebExperiment.Models.PatientRecord>
+
+<h2>Assign Patients</h2>
+
+<form action="@Url.Action("AssignPatient", "Patient")" method="post">
+    @Html.AntiForgeryToken()
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Select</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Geolocation ID</th>
+                <th>Number of Nurses</th>
+                <th>Has Doctor</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var patient in Model)
+            {
+                <tr>
+                    <td><input type="checkbox" name="selectedPatients" value="@patient.patientID" /></td>
+                    <td>@patient.patientID</td>
+                    <td>@patient.name</td>
+                    <td>@patient.geoID</td>
+                    <td>@patient.numOfNurses</td>
+                    <td>@(patient.hasDoctor ? "Yes" : "No")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">Assign</button>
+</form>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}

@@ -1,0 +1,101 @@
+﻿@*@model IEnumerable<iCAREWebExperiment.Models.PatientRecord>
+
+    <h2>Manage Patient Records</h2>
+
+    <a href="@Url.Action("AddPatient", "Patient")" class="btn btn-primary">Add New Patient</a>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Date of Birth</th>
+                <th>Height (cm)</th>
+                <th>Weight (kg)</th>
+                <th>Blood Group</th>
+                <th>Bed ID</th>
+                <th>Treatment Area</th>
+                <th>Geolocation ID</th>
+      New Column
+    <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var patient in Model)
+            {
+                <tr>
+                    <td>@patient.patientID</td>
+                    <td>@patient.name</td>
+                    <td>@patient.address</td>
+                    <td>@patient.dateOfBirth.ToShortDateString()</td>
+                    <td>@patient.height</td>
+                    <td>@patient.weight</td>
+                    <td>@patient.bloodGroup</td>
+                    <td>@patient.bedID</td>
+                    <td>@patient.treatmentArea</td>
+                    <td>@patient.geoID</td>
+                    <td>@patient.numOfNurses</td>
+                    <td>@(patient.hasDoctor ? "Yes" : "No")</td>
+                    <td>
+                        <a href="@Url.Action("EditPatient", "Patient", new { id = patient.patientID })">Edit</a> |
+                        <form action="@Url.Action("DeletePatient", "Patient", new { id = patient.patientID })" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this patient?');">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-link" style="color: red; text-decoration: underline; padding: 0; border: none; background: none;">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>*@
+
+@model IEnumerable<iCAREWebExperiment.Models.PatientRecord>
+
+<h2>Manage Patient Records</h2>
+
+<a href="@Url.Action("AddPatient", "Patient")" class="btn btn-primary">Add New Patient</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Date of Birth</th>
+            <th>Height (cm)</th>
+            <th>Weight (kg)</th>
+            <th>Blood Group</th>
+            <th>Bed ID</th>
+            <th>Treatment Area</th>
+            <th>Geolocation ID</th>
+            <th>Number of Nurses</th>
+            <th>Doctor Assigned</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var patient in Model)
+        {
+            <tr>
+                <td>@patient.patientID</td>
+                <td>@patient.name</td>
+                <td>@patient.address</td>
+                <td>@patient.dateOfBirth.ToShortDateString()</td>
+                <td>@patient.height</td>
+                <td>@patient.weight</td>
+                <td>@patient.bloodGroup</td>
+                <td>@patient.bedID</td>
+                <td>@patient.treatmentArea</td>
+                <td>@patient.geoID</td>
+                <td>@patient.numOfNurses</td> <!-- Display numOfNurses -->
+                <td>@(patient.hasDoctor ? "Yes" : "No")</td> <!-- Display hasDoctor status -->
+                <td>
+                    <a href="@Url.Action("EditPatient", "Patient", new { id = patient.patientID })">Edit</a> |
+                    <form action="@Url.Action("DeletePatient", "Patient", new { id = patient.patientID })" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this patient?');">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-link" style="color: red; text-decoration: underline; padding: 0; border: none; background: none;">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
